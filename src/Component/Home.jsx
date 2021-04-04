@@ -49,7 +49,11 @@ class Home extends Component{
                                 <tr>
                                     <th scope="row">{index + 1}</th>
                                     <td>{item.companyName}</td>
-                                    <td>{item.position}</td>
+                                    <td>
+                                        <a href={item.link} style={{color: "blue", cursor: "pointer"}}>
+                                            {item.position}
+                                        </a>
+                                    </td>
                                     <td>{item.city}</td>
                                     <td>{(item.deadline !== null)?item.deadline.substring(0, 10):""}</td>
                                     <td>{(item.active)?(<span style={{color:"green"}}>√</span>):(<span style={{color:"red"}}>×</span>)}</td>
