@@ -63,8 +63,8 @@ class RetrieveCareer extends Component{
         else{
             return(
                 <NoPermissionPage
-                    message={"you have no permission to check the detail, please login first" +
-                    "\n你无法查看详情，请先登录"}/>
+                    message={"you have no permission to check the detail" +
+                    "\n你无法查看详情"}/>
             )
         }
 
