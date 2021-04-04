@@ -55,9 +55,17 @@ const Show = (props) => {
             <label style={{color:"#00635a"}}>
                 {props.show}
             </label>
-            <p>
-                {props.content}
-            </p>
+            {
+                (props.show !== "link")?(
+                    <p>
+                        {props.content}
+                    </p>
+                ):(
+                    <p>
+                        <a href={props.content}>{props.content}</a>
+                    </p>
+                )
+            }
         </div>
     )
 }
