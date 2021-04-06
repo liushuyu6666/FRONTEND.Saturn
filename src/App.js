@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import AddCareer from "./Component/AddCareer";
 import RetrieveCareer from "./Component/RetrieveCareer";
+import UpdateCareer from "./Component/UpdateCareer";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/retrieve/:careerId" exact>
                 <RetrieveCareer />
+            </Route>
+            <Route path="/update/:careerId" exact>
+                <UpdateCareer />
             </Route>
         </Switch>
       </Router>

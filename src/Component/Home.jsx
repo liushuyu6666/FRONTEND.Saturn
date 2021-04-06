@@ -70,7 +70,14 @@ class Home extends Component{
                                     {
                                         (JSON.stringify(this.props.currentUser) !== "{}"
                                             &&this.props.currentUser.roles.includes("careerWrite"))?
-                                            (<td>更新</td>):
+                                            (<td style={{color: "blue", cursor: "pointer"}}
+                                                 id={item.id}
+                                                 onClick={(event) => {
+                                                     this.props.resetServer();
+                                                     this.props.history.push(`/update/${event.target.id}`)
+                                                 }}>
+                                                更新
+                                            </td>):
                                             (<></>)
                                     }
                                 </tr>
