@@ -13,6 +13,44 @@ code {
   monospace;
 }
 
+/***************************** career **************************************************/
+
+.career-list-outerLayer {
+  display: grid;
+  grid-template-columns: 1fr 18fr 1fr;
+  grid-template-rows: 8fr 92fr 8fr;
+  grid-template-areas:
+    "leftMargin pageSelectorA rightMargin"
+    "leftMargin listContainer rightMargin"
+    "leftMargin pageSelectorB rightMargin"
+}
+
+.career-list-container {
+  display: grid;
+  grid-area: listContainer;
+  grid-template-columns: 1fr 18fr 1fr;
+  grid-template-rows: 1px auto;
+  grid-template-areas:
+    "header header header"
+    "leftMargin content rightMargin"
+}
+
+.career-list-content {
+  grid-area: content;
+}
+
+.career-list-pageSelectorA {
+  grid-area: pageSelectorA;
+  justify-self: center;
+  align-self: center;
+}
+
+.career-list-pageSelectorB {
+  grid-area: pageSelectorB;
+  justify-self: center;
+  align-self: center;
+}
+
 /** career home page ***/
 .home-page-container {
   display: grid;

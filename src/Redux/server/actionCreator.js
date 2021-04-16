@@ -1,4 +1,4 @@
-import {LOADED, LOADING, SET_MAIN_CONTENT, SET_SERVER_ERRORS, RESET_SERVER} from "./actionType";
+import {LOADED, LOADING, SET_MAIN_CONTENT, SET_SERVER_ERRORS, SET_AUXILIARY_CONTENT ,RESET_SERVER} from "./actionType";
 
 export const loading = () => (
     {
@@ -22,6 +22,13 @@ export const setServerError = (error) => (
 export const setMainContent = (content) => (
     {
         type: SET_MAIN_CONTENT,
+        payload: content,
+    }
+)
+
+export const setAuxiliaryContent = (content) => (
+    {
+        type: SET_AUXILIARY_CONTENT,
         payload: content,
     }
 )

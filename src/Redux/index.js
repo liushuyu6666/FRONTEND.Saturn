@@ -1,6 +1,7 @@
 import {createStore, combineReducers} from "redux";
 import userReducer from "./user/reducer";
 import serverReducer from "./server/reducer";
+import careerReducer from "./career/reducer";
 
 // persist profile while refresh the web page
 const saveToLocalStorage = state => {
@@ -30,6 +31,7 @@ const persistedState = () => {
 const rootReducer = combineReducers({
     user: userReducer,
     server: serverReducer,
+    career: careerReducer,
 })
 
 // const persistedState = loadFromLocalStorage();

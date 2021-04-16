@@ -6,9 +6,8 @@ const createCareer = (jwt, body) => {
     return post(`${prefix}`, jwt, body);
 }
 
-const listCareer = (jwt) => {
-
-    return get(`${prefix}`, jwt);
+const listCareer = (jwt, page=0, size=20) => {
+    return get(`${prefix}?page=${page}&pageSize=${size}`, jwt);
 }
 
 const retrieveCareer = (careerId, jwt) => {

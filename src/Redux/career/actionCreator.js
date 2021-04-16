@@ -5,7 +5,8 @@ import {
     UPDATE_CAREER,
     DEACTIVATE_CAREER,
     ACTIVATE_CAREER,
-    APPLY_CAREER}
+    APPLY_CAREER,
+    RECORD_HOMEPAGE_PAGE_NUMBER}
     from "./actionTypes";
 
 export const addCareer = careerItem => (
@@ -49,5 +50,12 @@ export const activateCareer = () => (
 export const applyCareer = () => (
     {
         type: APPLY_CAREER,
+    }
+)
+
+export const recordPageNumberInHomePage = (page) => (
+    {
+        payload: page,
+        type: RECORD_HOMEPAGE_PAGE_NUMBER,
     }
 )

@@ -1,14 +1,22 @@
-import {ADD_CAREER, RETRIEVE_CAREER, LIST_CAREER, UPDATE_CAREER, DEACTIVATE_CAREER, ACTIVATE_CAREER, APPLY_CAREER} from "./actionTypes";
+import {
+    RECORD_HOMEPAGE_PAGE_NUMBER
+} from "./actionTypes";
 
 const initStates = {
-    careers: [],
-    filters: [],
+    page: 0,
 }
 
-const default function careerReducer (state = initStates, action){
+export default function careerReducer (state = initStates, action){
+    console.log(action);
     switch (action.type) {
-        case ADD_CAREER: {
-
+        case RECORD_HOMEPAGE_PAGE_NUMBER: {
+            return {
+                ...state,
+                page: action.payload,
+            }
+        }
+        default: {
+            return state;
         }
     }
 }
