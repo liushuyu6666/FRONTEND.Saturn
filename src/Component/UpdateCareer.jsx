@@ -1,6 +1,6 @@
 import HeaderAndDrawer from "./HeaderAndDrawer";
 import React, {Component} from "react";
-import {FormGroupText, FormGroup, LoadingDataPage, NoPermissionPage} from "./Widgets";
+import {FormGroupText, FormGroup, LoadingDataPage, NoPermissionPage, CheckboxButton} from "./Widgets";
 import {resetServer} from "../Redux/server/actionCreator";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
@@ -15,7 +15,7 @@ class AddCareer extends Component{
         this.state = {
             formValue: {
                 companyName: "", content: "", city: "", position: "",
-                link: "", start: "", deadline: "",
+                link: "", start: "", deadline: "", active: null, applied: null,
             },
             errors: {
                 img: {isValid: false, message: ""},
@@ -41,6 +41,25 @@ class AddCareer extends Component{
             .catch(err => {
                 window.alert("服务器出错\nerrors from server");
             })
+    }
+
+    clickCheckbox = (name) => {
+        if(this.state.formValue[name] !== true){
+            this.setState({
+                formValue:{
+                    ...this.state.formValue,
+                    [name]: true,
+                }
+            })
+        }
+        else{
+            this.setState({
+                formValue:{
+                    ...this.state.formValue,
+                    [name]: false,
+                }
+            })
+        }
     }
 
     buttonSeries = () => {
@@ -183,7 +202,18 @@ class AddCareer extends Component{
                             })
                         }}
                     />
-
+                    <CheckboxButton
+                        name={"active"}
+                        label={"active state"}
+                        option={this.state.formValue["active"]}
+                        click={this.clickCheckbox}
+                    />
+                    <CheckboxButton
+                        name={"applied"}
+                        label={"application state"}
+                        option={this.state.formValue["applied"]}
+                        click={this.clickCheckbox}
+                    />
                 </form>
             </div>
         )
@@ -218,8 +248,10 @@ class AddCareer extends Component{
                     link: this.props.server.mainContent.link,
                     start: startDate,
                     deadline: deadline,
+                    active: this.props.server.mainContent.active,
+                    applied: this.props.server.mainContent.applied,
                 },
-            })
+            });
         }
     }
 

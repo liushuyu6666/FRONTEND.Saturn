@@ -219,6 +219,36 @@ const DropDownButton = (props) => {
     )
 }
 
+const CheckboxButton = (props) => {
+
+    const activeClassName = props.option?"btn btn-primary active":"btn btn-primary";
+    const label = props.option?"true":"false";
+    const checked = props.option;
+
+    return (
+        <div className={"form-group"}>
+            <label
+                style={{color:"#00635a"}}>
+                {props.label}
+            </label>
+            <div className="btn-group-toggle" data-toggle="buttons">
+                <label
+                    className={activeClassName}>
+                    <input
+                        name={props.name}
+                        type="checkbox" checked={checked}
+                        onClick={(event) => {
+                            props.click(props.name); // don't input event
+                        }}
+                    />
+                    {label}
+                </label>
+            </div>
+        </div>
+    )
+
+}
+
 
 export {
     NoPermissionPage,
@@ -230,4 +260,5 @@ export {
     SmallArrayTags,
     AlertText,
     DropDownButton,
+    CheckboxButton,
 };
