@@ -6,8 +6,8 @@ const createCareer = (jwt, body) => {
     return post(`${prefix}`, jwt, body);
 }
 
-const listCareer = (jwt, page=0, size=20) => {
-    return get(`${prefix}?page=${page}&pageSize=${size}`, jwt);
+const listCareer = (jwt, page=0, size=20, isActive=true, isApplied=false) => {
+    return get(`${prefix}?page=${page}&pageSize=${size}&isActive=${isActive}&isApplied=${isApplied}`, jwt);
 }
 
 const retrieveCareer = (careerId, jwt) => {
@@ -30,6 +30,10 @@ const applyCareer = (careerId, jwt) => {
     return post(`${prefix}/apply/${careerId}`, jwt, null);
 }
 
+const countFilteredCareer = (isActive=true, isApplied=false) => {
+    return get(`${prefix}/count?isActive=${isActive}&isApplied=${isApplied}`);
+}
+
 export {
     createCareer,
     retrieveCareer,
@@ -37,5 +41,6 @@ export {
     updateCareer,
     deactivateCareer,
     activateCareer,
-    applyCareer
+    applyCareer,
+    countFilteredCareer,
 }

@@ -14,11 +14,11 @@ code {
 }
 
 /***************************** career **************************************************/
-
-.career-list-outerLayer {
+/** layout */
+.career-list-layout {
   display: grid;
   grid-template-columns: 1fr 18fr 1fr;
-  grid-template-rows: 8fr 92fr 8fr;
+  grid-template-rows: 60px auto 40px;
   grid-template-areas:
     "leftMargin pageSelectorA rightMargin"
     "leftMargin listContainer rightMargin"
@@ -35,17 +35,42 @@ code {
     "leftMargin content rightMargin"
 }
 
-.career-list-content {
+.career-list-content { /*** kid of career-list-container ***/
   grid-area: content;
 }
 
-.career-list-pageSelectorA {
+.career-list-pageSelectorA { /** kid of career-list-layout **/
   grid-area: pageSelectorA;
+  justify-self: center;
+  align-self: center;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px;
+  grid-template-areas:
+    "slot1 slot2 slot3 slot4 slot5 slot6 slot7"
+}
+
+.career-list-pageSelectorA-item3{
+  grid-area: slot3;
   justify-self: center;
   align-self: center;
 }
 
-.career-list-pageSelectorB {
+.career-list-pageSelectorA-item4{
+  grid-area: slot4;
+  justify-self: center;
+  align-self: center;
+}
+
+.career-list-pageSelectorA-item5{
+  grid-area: slot5;
+  justify-self: center;
+  align-self: center;
+}
+
+
+.career-list-pageSelectorB { /** kid of career-list-layout **/
   grid-area: pageSelectorB;
   justify-self: center;
   align-self: center;
@@ -65,9 +90,8 @@ code {
   grid-area: content;
 }
 
-/***************** grid ******************************/
 
-/***** profile *******/
+/*************************** profile **********************************/
 
 .profile-container {
   display: grid;

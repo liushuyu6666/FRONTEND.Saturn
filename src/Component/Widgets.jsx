@@ -6,7 +6,7 @@ import {useHistory} from "react-router";
 import {sadFaceUrl} from "../global";
 import {deleteProfile} from "../Redux/user/actionCreator";
 
-/********* auxiliary widgets **************/
+/********* auxiliary widgets pages **************/
 
 const NoPermissionPage = (props) => {
     return(
@@ -158,6 +158,67 @@ const AlertText = (props) => {
     )
 }
 
+/***** button *******/
+const DropDownButton = (props) => {
+    const button = useRef();
+    const [isOpen, setIsOpen] = useState("");
+    const [top, setTop] = useState("");
+    const [left, setLeft] = useState("");
+    const winWidth = window.innerWidth;
+
+    const toggle = (event) => {
+        event.preventDefault();
+        const {offsetTop, offsetLeft, offsetHeight} = button.current;
+
+        setTop((offsetHeight).toString() + "px");
+        setLeft((0).toString() + "px");
+        if(isOpen === "") setIsOpen("show");
+        else setIsOpen("")
+    }
+
+    return(
+        <div ref={button}
+             className={"dropdown"}>
+            <button id="dropdownMenuLink"
+                    className="btn btn-secondary btn-sm dropdown-toggle"
+                    onClick={toggle}>
+                {props.name}
+            </button>
+            <div
+                id={props.id}
+                className={`dropdown-menu dropdown-menu-right ${isOpen}`}
+                style={{position:"absolute",
+                    top: top, left: left}} >
+                <button
+                    className="dropdown-item"
+                    onClick={(event) => {
+                    }}
+                    value={props.label}
+                    disabled
+                >
+                    {props.label}
+                </button>
+                {
+                    props.items.map(item => (
+                        <button
+                            name={props.id}
+                            className="dropdown-item"
+                            style={{cursor:"pointer"}}
+                            onClick={(event) => {
+                                props.click(event);
+                                toggle(event)
+                            }}
+                            value={item}>
+                            {item}
+                        </button>
+                    ))
+                }
+
+            </div>
+        </div>
+    )
+}
+
 
 export {
     NoPermissionPage,
@@ -168,4 +229,5 @@ export {
     FormGroupText,
     SmallArrayTags,
     AlertText,
+    DropDownButton,
 };

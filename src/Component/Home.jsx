@@ -6,8 +6,8 @@ import HeaderAndDrawer from "./HeaderAndDrawer";
 import {resetServer} from "../Redux/server/actionCreator";
 import {deleteProfile} from "../Redux/user/actionCreator";
 import {recordPageNumberInHomePage} from "../Redux/career/actionCreator";
-import {listCareer} from "../Services/career";
-import {countCareer} from "../Services/manage";
+import {listCareer, countFilteredCareer} from "../Services/career";
+import {DropDownButton} from "./Widgets";
 
 class Home extends Component{
 
@@ -15,6 +15,10 @@ class Home extends Component{
         super(props);
         this.state = {
             size: 10,
+            filter:{
+                isActive: null,
+                isApplied: null,
+            }
         }
     }
 
@@ -44,8 +48,8 @@ class Home extends Component{
             pageNum.push(i + 1);
         }
         return (
-            <div className="career-list-pageSelectorA">
-                <nav aria-label="Page navigation example career-list-pageSelectorA">
+            <div className="career-list-pageSelectorB">
+                <nav aria-label="Page navigation example">
                     <ul className="pagination">
                         <li className="page-item">
                             <a className="page-link" href="#"
@@ -92,11 +96,71 @@ class Home extends Component{
         )
     }
 
+    filterCriteria = (event) => {
+        event.preventDefault();
+        const name = event.target.name;
+        let value = event.target.value;
+        (value === "true")? value = true: value =false;
+        this.setState({
+            filter:{
+                ...this.state.filter,
+                [name]: value,
+            }
+        })
+    }
+
+    filterCareer = (event) => {
+        event.preventDefault();
+        const jwt = localStorage.getItem("Authorization");
+        let isActive = (this.state.filter.isActive === null)?(true):(this.state.filter.isActive);
+        let isApplied = (this.state.filter.isApplied === null)?(false):(this.state.filter.isApplied);
+        loadPage(listCareer(jwt, this.props.career.page,
+            this.state.size, isActive, isApplied));
+        loadAuxiliaryInfo(countFilteredCareer(isActive, isApplied), "totalEntries");
+    }
+
+    stateFilter = () => {
+        return(
+            <div className="career-list-pageSelectorA">
+                <div className="career-list-pageSelectorA-item3">
+                    <DropDownButton
+                        id={"isActive"}
+                        label={"active state"}
+                        name={(this.state.filter.isActive === null)?
+                            ("active state"):(this.state.filter.isActive.toString())}
+                        items={["true", "false"]}
+                        click={this.filterCriteria}
+                    />
+                </div>
+                <div className="career-list-pageSelectorA-item4">
+                    <DropDownButton
+                        id={"isApplied"}
+                        label={"applied state"}
+                        name={(this.state.filter.isApplied === null)?
+                            ("applied state"):(this.state.filter.isApplied.toString())}
+                        items={["true", "false"]}
+                        click={this.filterCriteria}
+                    />
+                </div>
+                <div className="career-list-pageSelectorA-item5">
+                    <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        onClick={this.filterCareer}
+                    >
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+        )
+    }
+
     mainContent = () => {
         if(true){
             return(
-                <div className="career-list-outerLayer">
-                    {this.pagination()}
+                <div className="career-list-layout">
+                    {this.stateFilter()}
                     <div className={"career-list-container"}>
                         <table className="table table-striped career-list-content">
                             <thead>
@@ -163,6 +227,7 @@ class Home extends Component{
                             </tbody>
                         </table>
                     </div>
+                    {this.pagination()}
                 </div>
             )
         }
@@ -208,15 +273,14 @@ class Home extends Component{
     componentDidMount(){
         const jwt = localStorage.getItem("Authorization");
         loadPage(listCareer(jwt, this.props.career.page, this.state.size));
-        loadAuxiliaryInfo(countCareer(), "totalEntries");
-
+        loadAuxiliaryInfo(countFilteredCareer(), "totalEntries");
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.career.page !== prevProps.career.page){
             const jwt = localStorage.getItem("Authorization");
             loadPage(listCareer(jwt, this.props.career.page, this.state.size));
-            loadAuxiliaryInfo(countCareer(), "totalEntries");
+            loadAuxiliaryInfo(countFilteredCareer(), "totalEntries");
         }
     }
 }
