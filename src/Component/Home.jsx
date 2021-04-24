@@ -190,7 +190,10 @@ class Home extends Component{
                                             <td>{item.companyName}</td>
                                             <td>
                                                 {(item.link == null)?(item.position):
-                                                    (<a href={item.link} style={{color: "blue", cursor: "pointer"}}>
+                                                    (<a href={item.link}
+                                                        style={{color: "blue", cursor: "pointer"}}
+                                                        target={"_blank"}
+                                                    >
                                                         {item.position}
                                                     </a>)
                                                 }

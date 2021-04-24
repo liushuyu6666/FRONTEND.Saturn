@@ -62,7 +62,7 @@ const Show = (props) => {
                     </p>
                 ):(
                     <p>
-                        <a href={props.content}>{props.content}</a>
+                        <a href={props.content} target="_blank">{props.content}</a>
                     </p>
                 )
             }
