@@ -1,11 +1,12 @@
-import HeaderAndDrawer from "./HeaderAndDrawer";
+import HeaderAndDrawer from "../HeaderAndDrawer";
 import React, {Component} from "react";
-import {FormGroupText, FormGroup, LoadingDataPage, NoPermissionPage, CheckboxButton} from "./Widgets";
-import {resetServer} from "../Redux/server/actionCreator";
+import {FormGroupText, FormGroup, LoadingDataPage, NoPermissionPage, CheckboxButton} from "../Widgets";
+import {resetServer} from "../../Redux/server/actionCreator";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {updateCareer, retrieveCareer} from "../Services/career";
-import {loadPage} from "../Support/supportFunctions";
+import {updateCareer, retrieveCareer} from "../../Services/career";
+import {loadPage} from "../../Support/supportFunctions";
+import {careerListEndPoint} from "../../EndPoint/Career"
 
 
 class AddCareer extends Component{
@@ -31,7 +32,7 @@ class AddCareer extends Component{
                 if(res.result !== null){
                     window.alert("成功更新\nupdate the career successfully");
                     this.props.resetServer();
-                    this.props.history.push("/");
+                    this.props.history.push(careerListEndPoint);
                 }
                 else{
                     window.alert("更新失败\nOops, something wrong!");
@@ -72,7 +73,7 @@ class AddCareer extends Component{
                     let confirm = window.confirm("你还未保存，要返回吗?\n your change yet saved, go back?");
                     if(confirm){
                         this.props.resetServer();
-                        this.props.history.push("/");
+                        this.props.history.push(careerListEndPoint);
                     }}}>
                 返回
             </button>

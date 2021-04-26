@@ -1,5 +1,4 @@
 import React from 'react';
-import Home from './Component/Home';
 import Login from "./Component/Login";
 import './App.css';
 import {
@@ -7,9 +6,11 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import AddCareer from "./Component/AddCareer";
-import RetrieveCareer from "./Component/RetrieveCareer";
-import UpdateCareer from "./Component/UpdateCareer";
+import AddCareer from "./Component/Career/AddCareer";
+import RetrieveCareer from "./Component/Career/RetrieveCareer";
+import UpdateCareer from "./Component/Career/UpdateCareer";
+import ListCareer from "./Component/Career/ListCareer"
+import {careerListEndPoint, careerAddEndPoint, careerRetrieveEndPoint, careerUpdateEndPoint} from "./EndPoint/Career"
 
 
 function App() {
@@ -19,16 +20,16 @@ function App() {
             <Route path="/login" exact>
                 <Login />
             </Route>
-            <Route path="/" exact>
-                <Home />
+            <Route path={careerListEndPoint} exact>
+                <ListCareer />
             </Route>
-            <Route path="/add" exact>
+            <Route path={careerAddEndPoint} exact>
                 <AddCareer />
             </Route>
-            <Route path="/retrieve/:careerId" exact>
+            <Route path={`${careerRetrieveEndPoint}/:careerId`} exact>
                 <RetrieveCareer />
             </Route>
-            <Route path="/update/:careerId" exact>
+            <Route path={`${careerUpdateEndPoint}/:careerId`} exact>
                 <UpdateCareer />
             </Route>
         </Switch>

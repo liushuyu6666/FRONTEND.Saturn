@@ -1,11 +1,12 @@
-import HeaderAndDrawer from "./HeaderAndDrawer";
+import HeaderAndDrawer from "../HeaderAndDrawer";
 import React, {Component} from "react";
-import {Show, LoadingDataPage, NoPermissionPage} from "./Widgets";
-import {resetServer} from "../Redux/server/actionCreator";
+import {Show, LoadingDataPage, NoPermissionPage} from "../Widgets";
+import {resetServer} from "../../Redux/server/actionCreator";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {createCareer, retrieveCareer} from "../Services/career";
-import {loadPage} from "../Support/supportFunctions";
+import {createCareer, retrieveCareer} from "../../Services/career";
+import {loadPage} from "../../Support/supportFunctions";
+import {careerListEndPoint} from "../../EndPoint/Career"
 
 
 class RetrieveCareer extends Component{
@@ -31,7 +32,7 @@ class RetrieveCareer extends Component{
                 className={"btn btn-primary btn-sm active"}
                 onClick={() => {
                     this.props.resetServer();
-                    this.props.history.push("/");
+                    this.props.history.push(careerListEndPoint);
                 }}>
                 返回
             </button>

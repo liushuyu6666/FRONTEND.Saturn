@@ -1,15 +1,16 @@
 import React, {Component} from "react/";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {loadPage, loadAuxiliaryInfo} from "../Support/supportFunctions";
-import HeaderAndDrawer from "./HeaderAndDrawer";
-import {resetServer} from "../Redux/server/actionCreator";
-import {deleteProfile} from "../Redux/user/actionCreator";
-import {recordPageNumberInHomePage} from "../Redux/career/actionCreator";
-import {listCareer, countFilteredCareer} from "../Services/career";
-import {DropDownButton} from "./Widgets";
+import {loadPage, loadAuxiliaryInfo} from "../../Support/supportFunctions";
+import HeaderAndDrawer from "../HeaderAndDrawer";
+import {resetServer} from "../../Redux/server/actionCreator";
+import {deleteProfile} from "../../Redux/user/actionCreator";
+import {recordPageNumberInHomePage} from "../../Redux/career/actionCreator";
+import {listCareer, countFilteredCareer} from "../../Services/career";
+import {DropDownButton} from "../Widgets";
+import {careerAddEndPoint, careerRetrieveEndPoint, careerUpdateEndPoint} from "../../EndPoint/Career";
 
-class Home extends Component{
+class ListCareer extends Component{
 
     constructor(props) {
         super(props);
@@ -206,7 +207,7 @@ class Home extends Component{
                                                 id={item.id}
                                                 onClick={(event) => {
                                                     this.props.resetServer();
-                                                    this.props.history.push(`/retrieve/${event.target.id}`)
+                                                    this.props.history.push(`${careerRetrieveEndPoint}/${event.target.id}`)
                                                 }}
                                             >
                                                 详情
@@ -218,7 +219,7 @@ class Home extends Component{
                                                          id={item.id}
                                                          onClick={(event) => {
                                                              this.props.resetServer();
-                                                             this.props.history.push(`/update/${event.target.id}`)
+                                                             this.props.history.push(`${careerUpdateEndPoint}/${event.target.id}`)
                                                          }}>
                                                         更新
                                                     </td>):
@@ -253,7 +254,7 @@ class Home extends Component{
                     className={"btn btn-primary btn-sm active"}
                     onClick={() => {
                         this.props.resetServer();
-                        this.props.history.push("/add")}
+                        this.props.history.push(careerAddEndPoint)}
                     }>
                     add info
                 </button>
@@ -305,5 +306,5 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(withRouter(Home));
-// export default withRouter(Home);
+)(withRouter(ListCareer));
+// export default withRouter(ListCareer);
