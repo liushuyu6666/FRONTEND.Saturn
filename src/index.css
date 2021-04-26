@@ -14,7 +14,6 @@ code {
 }
 
 /***************************** career **************************************************/
-/** layout */
 .career-list-layout {
   display: grid;
   grid-template-columns: 1fr 18fr 1fr;
@@ -91,6 +90,22 @@ code {
 }
 
 
+/*************************** language *********************************/
+.language-list-container{
+  display: grid;
+  grid-template-rows: 7px auto;
+  grid-template-columns: 18fr 64fr 18fr;
+  grid-template-areas:
+    "header header header"
+    "leftMargin content rightMargin";
+}
+
+.language-list-card-area{
+  grid-area: content;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
 /*************************** profile **********************************/
 
 .profile-container {
@@ -146,4 +161,40 @@ code {
   grid-template-rows: auto;
   place-content: start;
   column-gap: 7px;
+}
+
+
+/************************** widgets **********************************/
+
+/************* language card ***************/
+.language-card-container{
+  display: grid;
+  row-gap: 10px;
+  grid-template-rows: 20px 150px;
+  grid-template-columns: 70fr 15fr 15fr;
+  grid-template-areas:
+    "keyword null name"
+    "content content content";
+
+  box-shadow: 10px 5px 5px dimgrey;
+  margin-bottom: 10px;
+  border: 1px solid grey;
+  /*border-radius: 3px;*/
+  padding: 3px;
+}
+
+.language-card-keyword{
+  grid-area: keyword;
+  align-self: center;
+}
+
+.language-card-name{
+  grid-area: name;
+  justify-self: center;
+  align-self: center;
+}
+
+.language-card-content{
+  grid-area: content;
+  border-top: 1px solid grey;
 }

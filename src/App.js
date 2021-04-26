@@ -11,6 +11,8 @@ import RetrieveCareer from "./Component/Career/RetrieveCareer";
 import UpdateCareer from "./Component/Career/UpdateCareer";
 import ListCareer from "./Component/Career/ListCareer"
 import {careerListEndPoint, careerAddEndPoint, careerRetrieveEndPoint, careerUpdateEndPoint} from "./EndPoint/Career"
+import ListLanguage from "./Component/Language/ListLanguage";
+import {languageListEndPoint} from "./EndPoint/Language";
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
             <Route path="/login" exact>
                 <Login />
             </Route>
+
             <Route path={careerListEndPoint} exact>
                 <ListCareer />
             </Route>
@@ -31,6 +34,10 @@ function App() {
             </Route>
             <Route path={`${careerUpdateEndPoint}/:careerId`} exact>
                 <UpdateCareer />
+            </Route>
+
+            <Route path={languageListEndPoint} exact>
+                <ListLanguage />
             </Route>
         </Switch>
       </Router>

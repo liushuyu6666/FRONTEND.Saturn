@@ -158,6 +158,23 @@ const AlertText = (props) => {
     )
 }
 
+const LanguageCard = (props) => {
+
+    return(
+        <div className={"language-card-container"}>
+            <div className="language-card-keyword">
+                <label>{props.keywords}</label>
+            </div>
+            <div className="language-card-name">
+                <label>{props.createBy}</label>
+            </div>
+            <div className="language-card-content">
+                <label>{props.content}</label>
+            </div>
+        </div>
+    )
+}
+
 /***** button *******/
 const DropDownButton = (props) => {
     const button = useRef();
@@ -261,4 +278,5 @@ export {
     AlertText,
     DropDownButton,
     CheckboxButton,
+    LanguageCard,
 };
