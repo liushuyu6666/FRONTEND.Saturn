@@ -48,6 +48,16 @@ const ErrorFromServer = (props) => {
 
 /******* small widgets *************/
 
+const RouteCard = (props) => {
+    return(
+        <div className="route-card">
+            <div className="route-card-content">
+                <a href={props.link}>{props.sectionName}</a>
+            </div>
+        </div>
+    )
+}
+
 const Show = (props) => {
 
     return(
@@ -279,4 +289,5 @@ export {
     DropDownButton,
     CheckboxButton,
     LanguageCard,
+    RouteCard,
 };
