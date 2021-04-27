@@ -12,7 +12,8 @@ import UpdateCareer from "./Component/Career/UpdateCareer";
 import ListCareer from "./Component/Career/ListCareer"
 import {careerListEndPoint, careerAddEndPoint, careerRetrieveEndPoint, careerUpdateEndPoint} from "./EndPoint/Career"
 import ListLanguage from "./Component/Language/ListLanguage";
-import {languageListEndPoint} from "./EndPoint/Language";
+import AddLanguage from "./Component/Language/AddLanguage";
+import {languageAddEndPoint, languageListEndPoint} from "./EndPoint/Language";
 import {homePageEndPoint} from "./EndPoint/Home";
 import Home from "./Component/Home";
 
@@ -49,6 +50,10 @@ function App() {
             <Route path={languageListEndPoint} exact>
                 <ListLanguage />
             </Route>
+            <Route path={languageAddEndPoint} exact>
+                <AddLanguage />
+            </Route>
+
         </Switch>
       </Router>
   );

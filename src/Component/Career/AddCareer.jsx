@@ -25,7 +25,7 @@ class AddCareer extends Component{
     }
 
     save = () => {
-        console.log(this.state.formValue);
+        // console.log(this.state.formValue);
         const jwt = localStorage.getItem("Authorization");
         createCareer(jwt, this.state.formValue)
             .then(res => {

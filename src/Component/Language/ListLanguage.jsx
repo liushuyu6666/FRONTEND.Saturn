@@ -1,5 +1,5 @@
 import React, {Component} from "react/";
-import {loadAuxiliaryInfo, loadPage} from "../../Support/supportFunctions";
+import {loadPage} from "../../Support/supportFunctions";
 import {listLanguage} from "../../Services/language";
 import {resetServer} from "../../Redux/server/actionCreator";
 import {deleteProfile} from "../../Redux/user/actionCreator";
@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import HeaderAndDrawer from "../HeaderAndDrawer";
 import {LanguageCard} from "../Widgets";
+import {languageAddEndPoint} from "../../EndPoint/Language";
 
 
 class ListLanguage extends Component{
@@ -36,12 +37,22 @@ class ListLanguage extends Component{
     }
 
     buttonSeries = () => {
-
-        return(
-            <div>
-
-            </div>
-        )
+        let buttonArray = []
+        if(JSON.stringify(this.props.currentUser) !== "{}"
+            && this.props.currentUser.roles.includes("languageWrite")){
+            buttonArray.push(
+                <button
+                    key={"add"}
+                    className={"btn btn-primary btn-sm active"}
+                    onClick={() => {
+                        this.props.resetServer();
+                        this.props.history.push(languageAddEndPoint)}
+                    }>
+                    add info
+                </button>
+            )
+        }
+        return buttonArray;
     }
 
     render(){

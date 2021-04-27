@@ -134,6 +134,7 @@ const FormGroupText = (props) => {
                 rows={15}
                 cols={90}
                 onChange={props.change}
+                spellCheck="true"
             />
         </div>
     )
