@@ -189,7 +189,9 @@ class ListCareer extends Component{
                                     &&this.props.server.mainContent.map((item, index) => (
                                         <tr>
                                             <th scope="row">{this.props.career.page * this.state.size + index + 1}</th>
-                                            <td>{item.companyName}</td>
+                                            <td>{(strLen(item.companyName) > 10)?(
+                                                strLenSlice(item.companyName, 10) + "..."
+                                            ):(item.companyName)}</td>
                                             <td>
                                                 {(item.link == null)?(item.position):
                                                     (<a href={item.link}
