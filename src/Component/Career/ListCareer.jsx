@@ -9,6 +9,7 @@ import {recordPageNumberInHomePage} from "../../Redux/career/actionCreator";
 import {listCareer, countFilteredCareer} from "../../Services/career";
 import {DropDownButton} from "../Widgets";
 import {careerAddEndPoint, careerRetrieveEndPoint, careerUpdateEndPoint} from "../../EndPoint/Career";
+import {strLen, strLenSlice} from "../../Support/strLen";
 
 class ListCareer extends Component{
 
@@ -195,7 +196,9 @@ class ListCareer extends Component{
                                                         style={{color: "blue", cursor: "pointer"}}
                                                         target={"_blank"}
                                                     >
-                                                        {item.position}
+                                                        {(strLen(item.position) > 20)?(
+                                                            strLenSlice(item.position, 20) + "..."
+                                                        ):(item.position)}
                                                     </a>)
                                                 }
                                             </td>
