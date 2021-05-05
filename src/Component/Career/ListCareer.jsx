@@ -197,7 +197,9 @@ class ListCareer extends Component{
                                                 strLenSlice(item.companyName, 10) + "..."
                                             ):(item.companyName)}</td>
                                             <td>
-                                                {(item.link == null)?(item.position):
+                                                {(item.link == null)?((strLen(item.position) > 20)?(
+                                                        strLenSlice(item.position, 20) + "..."
+                                                    ):(item.position)):
                                                     (<a href={item.link}
                                                         style={{color: "blue", cursor: "pointer"}}
                                                         target={"_blank"}
@@ -208,7 +210,9 @@ class ListCareer extends Component{
                                                     </a>)
                                                 }
                                             </td>
-                                            <td>{item.city}</td>
+                                            <td>{(strLen(item.city) > 10)?(
+                                                strLenSlice(item.city, 10) + "..."
+                                            ):(item.city)}</td>
                                             <td>{(item.deadline !== null)?item.deadline.substring(0, 10):""}</td>
                                             <td>{(item.active)?(<span style={{color:"green"}}>√</span>):(<span style={{color:"red"}}>×</span>)}</td>
                                             <td>{(item.applied)?(<span style={{color:"green"}}>√</span>):(<span style={{color:"red"}}>×</span>)}</td>
