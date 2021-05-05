@@ -111,14 +111,18 @@ class ListCareer extends Component{
         })
     }
 
-    filterCareer = (event) => {
-        event.preventDefault();
-        const jwt = localStorage.getItem("Authorization");
+    complementFilterCareer = (jwt) => {
         let isActive = (this.state.filter.isActive === null)?(true):(this.state.filter.isActive);
         let isApplied = (this.state.filter.isApplied === null)?(false):(this.state.filter.isApplied);
         loadPage(listCareer(jwt, this.props.career.page,
             this.state.size, isActive, isApplied));
         loadAuxiliaryInfo(countFilteredCareer(isActive, isApplied), "totalEntries");
+    }
+
+    filterCareer = (event) => {
+        event.preventDefault();
+        const jwt = localStorage.getItem("Authorization");
+        this.complementFilterCareer(jwt);
     }
 
     stateFilter = () => {
@@ -281,15 +285,21 @@ class ListCareer extends Component{
 
     componentDidMount(){
         const jwt = localStorage.getItem("Authorization");
-        loadPage(listCareer(jwt, this.props.career.page, this.state.size));
-        loadAuxiliaryInfo(countFilteredCareer(), "totalEntries");
+        // let isActive = (this.state.filter.isActive === null)?(true):(this.state.filter.isActive);
+        // let isApplied = (this.state.filter.isApplied === null)?(false):(this.state.filter.isApplied);
+        // loadPage(listCareer(jwt, this.props.career.page, this.state.size, isActive, isApplied));
+        // loadAuxiliaryInfo(countFilteredCareer(), "totalEntries");
+        this.complementFilterCareer(jwt);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.props.career.page !== prevProps.career.page){
             const jwt = localStorage.getItem("Authorization");
-            loadPage(listCareer(jwt, this.props.career.page, this.state.size));
-            loadAuxiliaryInfo(countFilteredCareer(), "totalEntries");
+            // let isActive = (this.state.filter.isActive === null)?(true):(this.state.filter.isActive);
+            // let isApplied = (this.state.filter.isApplied === null)?(false):(this.state.filter.isApplied);
+            // loadPage(listCareer(jwt, this.props.career.page, this.state.size, isActive, isApplied));
+            // loadAuxiliaryInfo(countFilteredCareer(), "totalEntries");
+            this.complementFilterCareer(jwt);
         }
     }
 }
@@ -312,4 +322,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps,
 )(withRouter(ListCareer));
-// export default withRouter(ListCareer);
